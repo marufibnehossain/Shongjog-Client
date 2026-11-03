@@ -1,26 +1,113 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
-@theme inline {
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--background);
+  --color-ring: var(--primary);
+
+  --color-heading: var(--heading);
+  --color-foreground: var(--heading);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-stroke: var(--stroke);
+
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-warning: var(--warning);
+
+  --font-heading: var(--font-plus-jakarta);
+  --font-body: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Light Theme */
+:root {
+  --primary: #2F6B4F;
+  --primary-hover: #24543E;
+
+  --heading: #18231D;
+  --text: #4A554F;
+  --muted: #7B857F;
+
+  --background: #F7F5EF;
+  --surface: #FFFFFF;
+  --stroke: #DCE3DD;
+
+  --success: #3F8F5F;
+  --danger: #C94C4C;
+  --warning: #E39A45;
+}
+
+/* Dark Theme */
+.dark {
+  --primary: #4F9A72;
+  --primary-hover: #65AD86;
+
+  --heading: #F1F5F2;
+  --text: #C8D1CB;
+  --muted: #8F9B93;
+
+  --background: #101713;
+  --surface: #18211C;
+  --stroke: #2B372F;
+
+  --success: #55B978;
+  --danger: #E45D5F;
+  --warning: #F0AD55;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--heading);
+  font-family: var(--font-body), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-stroke outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+:root {
+  --event-donation: #fad9e3;
+  --event-cleanup: #d9f0e3;
+  --event-plantation: #d8eed8;
+  --event-education: #dce8f8;
+  --event-winter: #e6e0f7;
+  --event-food: #fce3c8;
+  --event-community: #d9eef0;
+  --event-environment: #f3e0d0;
+}
+
+.dark {
+  --event-donation: #4a2834;
+  --event-cleanup: #263f32;
+  --event-plantation: #29432d;
+  --event-education: #28384d;
+  --event-winter: #37314a;
+  --event-food: #4a3828;
+  --event-community: #263f42;
+  --event-environment: #44352b;
 }
