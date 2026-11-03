@@ -111,9 +111,9 @@ const EventCard = ({
       </div>
 
       {/* Action */}
-      <div className="mt-2 flex items-center justify-between rounded-[18px] bg-background-soft px-4 py-3.5">
+      <div className="mt-2 flex items-center justify-between rounded-[18px] bg-background-soft px-4 py-2">
         <Link
-          href={`/events/${id}`}
+          href={`/event/${id}`}
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary-hover"
         >
           View Event
