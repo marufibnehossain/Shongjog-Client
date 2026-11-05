@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -45,52 +45,78 @@ function getLocalDateString(date: Date) {
 }
 
 export default function AddEventPage() {
-  const [thumbnailUrl, setThumbnailUrl] = useState("");
+  const [form, setForm] = useState({
+    title: "",
+    type: "Donation",
+    date: "",
+    location: "",
+    thumbnailUrl: "",
+    description: "",
+});
   const [submitMessage, setSubmitMessage] = useState("");
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
-
-  const form = event.currentTarget;
-  const formData = new FormData(form);
-
-  const eventDate = formData.get("date");
-
-  if (
-    typeof eventDate !== "string" ||
-    eventDate < getLocalDateString(new Date())
-  ) {
-    setSubmitMessage("Choose today or a future date before publishing.");
-    return;
-  }
-
-  try {
-    const res = await fetch("http://localhost:5000/events/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(Object.fromEntries(formData)),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      setSubmitMessage(data.message || "Failed to create event.");
-      return;
+  const handleSubmit = async () => {
+    if (form.date < getLocalDateString(new Date())) {
+        setSubmitMessage(
+            "Choose today or a future date before publishing."
+        );
+        return;
     }
 
-    setSubmitMessage("Event created successfully!");
-    form.reset();
-    setThumbnailUrl("");
-  } catch (error) {
-    console.error("Create event error:", error);
-    setSubmitMessage("Something went wrong. Please try again.");
-  }
+    try {
+        const res = await fetch(
+            "http://localhost:5000/events/create",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(form),
+            }
+        );
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            setSubmitMessage(
+                data.message || "Failed to create event."
+            );
+            return;
+        }
+
+        setSubmitMessage("Event created successfully!");
+
+        setForm({
+            title: "",
+            type: "Donation",
+            date: "",
+            location: "",
+            thumbnailUrl: "",
+            description: "",
+        });
+    } catch (error) {
+        console.error("Create event error:", error);
+        setSubmitMessage(
+            "Something went wrong. Please try again."
+        );
+    }
+};
+
+const handleChange = (
+    e: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+) => {
+    setForm({
+        ...form,
+        [e.target.name]: e.target.value,
+    });
+
+    setSubmitMessage("");
 };
 
   return (
-    <main className="min-h-screen bg-background px-4 py-8 sm:py-12">
+    <main className="min-h-screen bg-background px-[5vw] pt-30 pb-10 sm:pt-34 sm:pb-25">
       <div className="mx-auto w-full max-w-2xl">
         <Link
           href="/"
@@ -134,6 +160,7 @@ export default function AddEventPage() {
                   className="pl-10"
                   placeholder="e.g. Winter Clothes Distribution - Mirpur 10, Dhaka"
                   required
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -156,6 +183,7 @@ export default function AddEventPage() {
                     name="type"
                     defaultValue="Donation"
                     required
+                    onChange={handleChange}
                     className="h-11 w-full appearance-none rounded-lg border border-stroke bg-surface pl-10 pr-10 text-sm text-heading shadow-sm outline-none transition focus-visible:border-primary focus-visible:ring-3 focus-visible:ring-primary/20"
                   >
                     <option>Donation</option>
@@ -191,6 +219,7 @@ export default function AddEventPage() {
                     type="date"
                     className="pl-10"
                     required
+                    onChange={handleChange}
                   />
                 </div>
                 <p className="text-xs text-muted">
@@ -217,6 +246,7 @@ export default function AddEventPage() {
                   className="pl-10"
                   placeholder="e.g. Mohammadpur Town Hall, Dhaka"
                   required
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -237,11 +267,8 @@ export default function AddEventPage() {
                   id="thumbnail-url"
                   name="thumbnailUrl"
                   type="url"
-                  value={thumbnailUrl}
-                  onChange={(event) => {
-                    setThumbnailUrl(event.target.value);
-                    setSubmitMessage("");
-                  }}
+                  value={form.thumbnailUrl}
+                  onChange={handleChange}
                   className="pl-10"
                   placeholder="https://images.unsplash.com/photo-..."
                   required
@@ -254,9 +281,13 @@ export default function AddEventPage() {
                     <button
                       type="button"
                       onClick={() => {
-                        setThumbnailUrl(preset.url);
+                        setForm({
+                            ...form,
+                            thumbnailUrl: preset.url,
+                        });
+
                         setSubmitMessage("");
-                      }}
+                    }}
                       className="text-primary underline-offset-2 transition-colors hover:underline"
                     >
                       {preset.label}

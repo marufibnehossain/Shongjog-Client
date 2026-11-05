@@ -7,7 +7,6 @@ import {
     ArrowLeft,
     ArrowUpRight,
     CalendarDays,
-    Mail,
     MapPin,
     Share2,
     Tag,
@@ -15,6 +14,8 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { IEvent } from "@/types/event.type";
+import EditEvents from "@/components/small-components/EditEvents";
+import DeleteEvents from "@/components/small-components/DeleteEvents";
 
 const categoryStyles: Record<string, string> = {
     Donation: "bg-danger/10 text-danger border-danger/20",
@@ -122,26 +123,35 @@ const EventDetailsPage = () => {
             <div className="mx-auto max-w-7xl">
 
                 {/* Back */}
-                <Link
-                    href="/events"
-                    className="mb-7 inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-primary"
-                >
-                    <ArrowLeft className="size-4" />
-                    Back to Upcoming Events
-                </Link>
+                <div className="mb-8 flex items-center justify-between">
+                    <Link
+                        href="/events"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-primary"
+                    >
+                        <ArrowLeft className="size-4" />
+                        Back to Upcoming Events
+                    </Link>
+                    <div className="flex items-center gap-2">
+                        <EditEvents event={event} onUpdated={setEvent} />
+                        <DeleteEvents eventId={event.id} />
+                    </div>
+                </div>
 
                 {/* Main Event Card */}
                 <section className="rounded-[28px] border border-stroke bg-surface p-4 shadow-sm sm:p-6 lg:p-7">
 
                     {/* Section Heading */}
-                    <h1 className="mb-6 text-2xl font-bold text-heading sm:text-3xl">
-                        About this event
-                    </h1>
+                    {/* <div className="mb-8 flex items-center justify-between">
+                        <h1 className="mb-6 text-2xl font-bold text-heading sm:text-3xl">
+                            About this event
+                        </h1>
+                        <EditEvents event={event} />
+                    </div> */}
 
                     <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
 
                         {/* Image */}
-                        <div className="relative aspect-[4/3] overflow-hidden rounded-[22px]">
+                        <div className="relative aspect-4/3 overflow-hidden rounded-[22px]">
                             <Image
                                 src={event.thumbnailUrl}
                                 alt={event.title}
@@ -182,52 +192,54 @@ const EventDetailsPage = () => {
                             </p>
 
                             {/* Information Boxes */}
-                            <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                            <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2">
 
                                 {/* Date */}
-                                <div className="rounded-2xl border border-stroke bg-background p-4">
+                                <div className="flex gap-3 rounded-2xl border border-stroke bg-background p-4">
                                     <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                                         <CalendarDays className="size-5" />
                                     </div>
 
-                                    <p className="mt-4 text-xs font-medium text-muted">
+                                    <div>
+                                        <p className="text-xs font-medium text-muted">
                                         Event Date
                                     </p>
 
                                     <p className="mt-1 text-sm font-semibold leading-5 text-heading">
                                         {formattedDate}
                                     </p>
+                                    </div>
                                 </div>
 
                                 {/* Organizer */}
-                                <div className="rounded-2xl border border-stroke bg-background p-4">
+                                <div className=" flex gap-3 rounded-2xl border border-stroke bg-background p-4">
                                     <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                                         <Users className="size-5" />
                                     </div>
 
-                                    <p className="mt-4 text-xs font-medium text-muted">
+                                    <div>
+                                        <p className="text-xs font-medium text-muted">
                                         Organized By
                                     </p>
 
                                     <p className="mt-1 text-sm font-semibold leading-5 text-heading">
                                         Community Organizer
                                     </p>
+                                    </div>
                                 </div>
 
                                 {/* Contact */}
-                                <div className="rounded-2xl border border-stroke bg-background p-4">
+                                {/* <div className="flex gap-3 rounded-2xl border border-stroke bg-background p-4">
                                     <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                                         <Mail className="size-5" />
                                     </div>
 
-                                    <p className="mt-4 text-xs font-medium text-muted">
-                                        Contact
-                                    </p>
+                                    <div>
+                                        <p className="text-xs font-medium text-muted">Contact</p>
 
-                                    <p className="mt-1 truncate text-sm font-semibold leading-5 text-heading">
-                                        {event.organizerEmail}
-                                    </p>
-                                </div>
+                                        <p className="mt-1 truncate text-sm font-semibold leading-5 text-heading">{event.organizerEmail}</p>
+                                    </div>
+                                </div> */}
                             </div>
 
                             {/* Actions */}
