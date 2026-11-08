@@ -16,6 +16,8 @@ import { useEffect, useState } from "react";
 import { IEvent } from "@/types/event.type";
 import EditEvents from "@/components/small-components/EditEvents";
 import DeleteEvents from "@/components/small-components/DeleteEvents";
+import { useSession } from "@/lib/auth-client";
+import { toast } from "react-toastify";
 
 const categoryStyles: Record<string, string> = {
     Donation: "bg-danger/10 text-danger border-danger/20",
@@ -40,6 +42,39 @@ const EventDetailsPage = () => {
     const [event, setEvent] = useState<IEvent | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [joined, setJoined] = useState(false);
+    const { data:session } = useSession();
+    const user = session?.user;
+
+    const handleJoinEvent = async () => {
+        if (!user) {
+            toast.error("Please sign in to join the event.");
+            return;
+        }
+
+        const data = {
+            ...user,
+            ...event,
+            joinedAt: new Date(),
+        }
+        const res = await fetch(`http://localhost:5000/events/join`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+        
+        const result = await res.json();
+
+        if (!res.ok) {
+            toast.error(result.message || "Failed to join event.");
+        }
+
+        setJoined(true);
+        toast.success("You have successfully joined the event!");
+    }
+
 
     useEffect(() => {
         const fetchEvent = async () => {
@@ -70,6 +105,22 @@ const EventDetailsPage = () => {
             fetchEvent();
         }
     }, [id]);
+
+    useEffect(() => {
+        if (!id || !session?.user?.email) return;
+
+        const checkJoined = async () => {
+            const res = await fetch(
+            `http://localhost:5000/events/joined/check/${id}?email=${session.user.email}`
+            );
+
+            const data = await res.json();
+
+            setJoined(data.joined);
+        };
+
+        checkJoined();
+    }, [id, session]);
 
     if (loading) {
         return (
@@ -244,11 +295,19 @@ const EventDetailsPage = () => {
 
                             {/* Actions */}
                             <div className="mt-7 flex items-center gap-3">
+                                {/* <input
+                                    readOnly
+                                    aria-label="join event"
+                                    type="date"
+                                    defaultValue={new Date(event.date).toISOString().split("T")[0]}
+                                /> */}
                                 <button
-                                    type="button"
-                                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-primary-hover sm:flex-none sm:min-w-40"
+                                    onClick={handleJoinEvent}
+                                    disabled={joined}
+                                    type="submit"
+                                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-primary-hover sm:flex-none sm:min-w-40 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
-                                    Join Event
+                                    {joined ? "Joined" : "Join Event"}
                                     <ArrowUpRight className="size-4" />
                                 </button>
 

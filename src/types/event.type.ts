@@ -7,4 +7,6 @@ export interface IEvent {
   location: string;
   date: string;
   organizerEmail: string;
+  showCancel?: boolean;
+  showEdit?: boolean;
 }

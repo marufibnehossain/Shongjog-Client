@@ -47,7 +47,7 @@ const AllEventsPage = async () => {
 
     return (
         <main className="w-full overflow-hidden">
-            <section style={{backgroundImage: "url('/background.png')", backgroundSize: "100%", backgroundPosition: "bottom center", backgroundRepeat: "no-repeat"}} className="bg-[#edf5e7] px-[5vw] pb-14 pt-32 sm:pb-20 sm:pt-34 lg:pb-24 lg:pt-36">
+            <section style={{backgroundImage: "url('/pattern-bg.png')", backgroundPosition: "center center", backgroundRepeat: "repeat"}} className="bg-[#edf5e7] px-[5vw] pb-14 pt-32 sm:pb-20 sm:pt-34 lg:pb-24 lg:pt-36">
                 <div className="mx-auto max-w-7xl">
                     <div className="grid items-end gap-8 lg:grid-cols-[1fr_360px]">
                         <div className="max-w-3xl">

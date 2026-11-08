@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -5,28 +7,33 @@ import {
   MapPin,
   ArrowUpRight,
   UserRound,
+  X,
 } from "lucide-react";
 import { IEvent } from "@/types/event.type";
+import { useState } from "react";
+import { useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
-const categoryStyles: Record<string, string> = {
-  Donation: "bg-danger/10 text-danger",
-  "Community Support": "bg-primary/10 text-primary",
-  "Environmental Cleanup": "bg-success/10 text-success",
-  "Tree Plantation": "bg-success/10 text-success",
-  "Winter Relief": "bg-primary/10 text-primary",
-  "Educational Outreach": "bg-warning/10 text-warning",
-  "Food Distribution": "bg-warning/10 text-warning",
-};
+// const categoryStyles: Record<string, string> = {
+//   Donation: "bg-danger/10 text-danger",
+//   "Community Support": "bg-primary/10 text-primary",
+//   "Environmental Cleanup": "bg-success/10 text-success",
+//   "Tree Plantation": "bg-success/10 text-success",
+//   "Winter Relief": "bg-primary/10 text-primary",
+//   "Educational Outreach": "bg-warning/10 text-warning",
+//   "Food Distribution": "bg-warning/10 text-warning",
+// };
 
-const categoryBackgrounds: Record<string, string> = {
-  "Donation": "var(--event-donation)",
-  "Community Support": "var(--event-community)",
-  "Environmental Cleanup": "var(--event-environment)",
-  "Tree Plantation": "var(--event-plantation)",
-  "Winter Relief": "var(--event-winter)",
-  "Educational Outreach": "var(--event-education)",
-  "Food Distribution": "var(--event-food)",
-};
+// const categoryBackgrounds: Record<string, string> = {
+//   "Donation": "var(--event-donation)",
+//   "Community Support": "var(--event-community)",
+//   "Environmental Cleanup": "var(--event-environment)",
+//   "Tree Plantation": "var(--event-plantation)",
+//   "Winter Relief": "var(--event-winter)",
+//   "Educational Outreach": "var(--event-education)",
+//   "Food Distribution": "var(--event-food)",
+// };
 
 const EventCard = ({
   id,
@@ -37,12 +44,38 @@ const EventCard = ({
   location,
   date,
   organizerEmail,
+  showCancel=false,
+  showEdit=false,
 }: IEvent) => {
+  const [isCancelling, setIsCancelling] = useState(false);
+  const { data: session } = useSession();
+  const router = useRouter();
   const categoryClass =
-    categoryStyles[type] || "bg-primary/10 text-primary";
+    "bg-white/80 text-primary font-bold";
 
   const categoryBackground =
-    categoryBackgrounds[type] || "var(--event-community)";
+    "#edf5e7";
+
+  const handleCancel = async () => {
+    const res = await fetch(`http://localhost:5000/events/joined/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: session?.user?.email,
+      }),
+    })
+    const data = await res.json();
+
+    setIsCancelling(false);
+
+    toast.success("Event cancelled successfully.");
+
+    if (res.ok) {
+      router.refresh();
+    }
+  }
 
   return (
     <article className="group overflow-hidden rounded-[28px] border border-stroke bg-surface p-2.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
@@ -66,7 +99,7 @@ const EventCard = ({
 
             {/* Category */}
             <span
-              className={`absolute left-4 top-4 rounded-full px-3 py-1.5 text-xs font-semibold backdrop-blur-md ${categoryClass}`}
+              className={`absolute left-4 top-4 rounded-full px-3 py-1.5 text-xs backdrop-blur-md ${categoryClass}`}
             >
               {type}
             </span>
@@ -111,15 +144,30 @@ const EventCard = ({
       </div>
 
       {/* Action */}
-      <div className="mt-2 flex items-center justify-between rounded-[18px] bg-background-soft px-4 py-2">
+      <div className="mt-2 flex items-center justify-between rounded-[18px] bg-background-soft px-4 py-1">
         <Link
           href={`/event/${id}`}
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary-hover"
+          className="inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-primary-hover"
         >
           View Event
 
           <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </Link>
+
+        {
+          showCancel && (
+            <button
+              type="button"
+              onClick={handleCancel}
+              disabled={isCancelling}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-danger transition-colors hover:text-danger/80 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+            >
+              <X className="size-4" />
+
+              {isCancelling ? "Cancelling..." : "Cancel"}
+            </button>
+          )
+        }
       </div>
     </article>
   );

@@ -63,27 +63,27 @@ export function DropdownMenuAvatar() {
           <AvatarImage src={session?.user.image || ""} alt="profile image" />
           <AvatarFallback>LR</AvatarFallback>
         </Avatar></Button>} />
-      <DropdownMenuContent className="w-40" align="end">
+      <DropdownMenuContent className="w-46 bg-background" align="end">
         <DropdownMenuItem>
           <Avatar>
             <AvatarImage src={session?.user.image || ""} alt="profile image" />
-            <AvatarFallback>LR</AvatarFallback>
+            <AvatarFallback>{session?.user.name?.split(" ").map(n => n[0]).join("")}</AvatarFallback>
           </Avatar>
           <p>{session?.user.name}</p>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
+          <DropdownMenuItem className="cursor-pointer sm:hidden">
+            <Link href='/events' className='sm:text-sm text-xs font-medium hover:no-underline flex gap-2 items-center'><SquareKanbanPlus /> Upcoming Events</Link>
+          </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer">
-            <SquareKanbanPlus />
-            Create Event
+            <Link href='/events/create' className='sm:text-sm text-xs font-medium hover:no-underline flex gap-2 items-center'><SquareKanbanPlus /> Create Event</Link> 
           </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer" >
-            <SquarePen />
-            Manage Events
+            <Link href='/events/manage' className='sm:text-sm text-xs font-medium hover:no-underline flex gap-2 items-center'><SquarePen /> Manage Events</Link>
           </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer">
-            <CalendarCheck />
-            Joined Events
+            <Link href='/events/joined' className='sm:text-sm text-xs font-medium hover:no-underline flex gap-2 items-center'><CalendarCheck /> Joined Events</Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
