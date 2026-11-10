@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 import { IEvent } from "@/types/event.type";
 import EditEvents from "@/components/small-components/EditEvents";
 import DeleteEvents from "@/components/small-components/DeleteEvents";
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import { toast } from "react-toastify";
 
 const categoryStyles: Record<string, string> = {
@@ -57,6 +57,7 @@ const EventDetailsPage = () => {
             ...event,
             joinedAt: new Date(),
         }
+        
         const res = await fetch(`http://localhost:5000/events/join`, {
             method: "POST",
             headers: {
@@ -82,9 +83,13 @@ const EventDetailsPage = () => {
                 setLoading(true);
                 setError(false);
 
+                const { data: jwtToken } = await authClient.token();
                 const res = await fetch(
-                    `http://localhost:5000/events/${id}`
-                );
+                    `http://localhost:5000/events/${id}`, {
+                        headers: {
+                            Authorization: `Bearer ${jwtToken?.token}`,
+                        },
+                });
 
                 if (!res.ok) {
                     throw new Error(`Request failed: ${res.status}`);
