@@ -30,10 +30,7 @@ export const auth = betterAuth({
 		},
 	},
 
-    plugins: [
-        jwt(), 
-    ],
-
+    plugins: [jwt()],
     session: {
         cookieCache: {
             enabled: true,

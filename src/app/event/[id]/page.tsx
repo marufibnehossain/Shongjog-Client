@@ -58,10 +58,12 @@ const EventDetailsPage = () => {
             joinedAt: new Date(),
         }
         
+        const { data: jwtToken } = await authClient.token();
         const res = await fetch(`http://localhost:5000/events/join`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${jwtToken?.token}`,
             },
             body: JSON.stringify(data),
         });

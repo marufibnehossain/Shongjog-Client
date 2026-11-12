@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { useState, type ChangeEvent } from "react";
 import { IEvent } from "@/types/event.type";
+import { authClient } from "@/lib/auth-client";
 
 const photoPresets = [
   {
@@ -83,12 +84,14 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
     }
 
     try {
+      const { data: jwtToken } = await authClient.token();
       const res = await fetch(
         `http://localhost:5000/events/${event.id}`,
         {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${jwtToken?.token}`,
           },
           body: JSON.stringify(form),
         }

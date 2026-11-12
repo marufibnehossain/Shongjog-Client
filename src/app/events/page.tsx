@@ -1,4 +1,5 @@
 import EventCard from "@/components/EventCard";
+import { auth } from "@/lib/auth";
 import { IEvent } from "@/types/event.type";
 import {
     ArrowUpRight,
@@ -8,10 +9,18 @@ import {
     HeartHandshake,
     Leaf,
 } from "lucide-react";
+import { headers } from "next/headers";
 import Link from "next/link";
 
 const AllEventsPage = async () => {
-    const res = await fetch("http://localhost:5000/events");
+    const jwtToken = await auth.api.getToken({
+        headers: await headers()
+    });
+    const res = await fetch("http://localhost:5000/events", {
+        headers: {
+            authorization: `Bearer ${jwtToken?.token}`,
+        },
+    });
     const data: IEvent[] = await res.json();
 
     const categories = [

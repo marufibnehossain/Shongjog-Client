@@ -13,8 +13,14 @@ const JoinedEventsPage = async () => {
         headers: await headers(),
     });
     const user = session?.user;
+    
+    const jwtToken = await auth.api.getToken();
+    const res = await fetch(`http://localhost:5000/events/joined/${user?.email}`, {
+        headers: {
+            Authorization: `Bearer ${jwtToken?.token}`,
+        },
+    });
 
-    const res = await fetch(`http://localhost:5000/events/joined/${user?.email}`);
     const data: IEvent[] = await res.json();
 
     return (

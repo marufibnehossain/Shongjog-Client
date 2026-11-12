@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { authClient } from "@/lib/auth-client";
 
 const photoPresets = [
   {
@@ -64,12 +65,14 @@ export default function AddEventPage() {
     }
 
     try {
+        const { data: jwtToken } = await authClient.token();
         const res = await fetch(
             "http://localhost:5000/events/create",
             {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${jwtToken?.token}`
                 },
                 body: JSON.stringify(form),
             }

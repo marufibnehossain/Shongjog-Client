@@ -12,13 +12,18 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
+import { authClient } from "@/lib/auth-client"
 import { redirect } from "next/navigation"
 
 const AlertDialogDemo = ({eventId} : {eventId: string}) => {
     const handleDelete = async () => {
-        const res = await fetch(`http://localhost:5000/events/${eventId}`, {
-            method: 'DELETE',
-        });
+      const { data: jwtToken } = await authClient.token();
+      const res = await fetch(`http://localhost:5000/events/${eventId}`, {
+          method: 'DELETE',
+          headers: {
+              Authorization: `Bearer ${jwtToken?.token}`,
+          },
+      });
 
         const data = await res.json();
         redirect('/events');

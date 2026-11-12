@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { IEvent } from "@/types/event.type";
 import { useState } from "react";
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
@@ -57,10 +57,12 @@ const EventCard = ({
     "#edf5e7";
 
   const handleCancel = async () => {
+    const { data: jwtToken } = await authClient.token();
     const res = await fetch(`http://localhost:5000/events/joined/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${jwtToken?.token}`,
       },
       body: JSON.stringify({
         email: session?.user?.email,
