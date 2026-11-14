@@ -14,7 +14,9 @@ const JoinedEventsPage = async () => {
     });
     const user = session?.user;
     
-    const jwtToken = await auth.api.getToken();
+    const jwtToken = await auth.api.getToken({
+        headers: await headers(),
+    });
     const res = await fetch(`http://localhost:5000/events/joined/${user?.email}`, {
         headers: {
             Authorization: `Bearer ${jwtToken?.token}`,
@@ -31,7 +33,7 @@ const JoinedEventsPage = async () => {
                         <div className="text-center max-w-xl mx-auto">
                             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-stroke bg-surface px-3.5 py-2 text-xs font-semibold text-primary">
                                 <CalendarDays className="size-3.5" />
-                                Community Events
+                                Joined Events
                             </div>
 
                             <h1 className="text-4xl font-bold leading-[1.08] tracking-tight text-heading text-center sm:text-5xl lg:text-6xl">
@@ -141,7 +143,7 @@ const JoinedEventsPage = async () => {
                             </div>
 
                             <Link
-                                href="/create-event"
+                                href="/events/create"
                                 className="relative inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
                             >
                                 Create an Event

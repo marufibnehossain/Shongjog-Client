@@ -25,8 +25,8 @@ const AlertDialogDemo = ({eventId} : {eventId: string}) => {
           },
       });
 
-        const data = await res.json();
-        redirect('/events');
+      const data = await res.json();
+      redirect('/events');
     }
   return (
     <AlertDialog>

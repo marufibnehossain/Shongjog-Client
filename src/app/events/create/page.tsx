@@ -46,6 +46,7 @@ function getLocalDateString(date: Date) {
 }
 
 export default function AddEventPage() {
+  const { data: session } = authClient.useSession();
   const [form, setForm] = useState({
     title: "",
     type: "Donation",
@@ -324,7 +325,7 @@ const handleChange = (
             <div className="flex flex-col gap-1 rounded-lg border border-stroke bg-background px-4 py-3 text-xs sm:flex-row sm:items-center sm:justify-between">
               <span className="text-muted">Organizer email attached:</span>
               <span className="font-semibold text-heading">
-                organizer@shongjog.org
+                {session?.user?.email}
               </span>
             </div>
 

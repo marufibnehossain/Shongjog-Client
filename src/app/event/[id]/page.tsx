@@ -84,14 +84,9 @@ const EventDetailsPage = () => {
             try {
                 setLoading(true);
                 setError(false);
-
-                const { data: jwtToken } = await authClient.token();
+                
                 const res = await fetch(
-                    `http://localhost:5000/events/${id}`, {
-                        headers: {
-                            Authorization: `Bearer ${jwtToken?.token}`,
-                        },
-                });
+                    `http://localhost:5000/events/${id}`);
 
                 if (!res.ok) {
                     throw new Error(`Request failed: ${res.status}`);
@@ -189,10 +184,12 @@ const EventDetailsPage = () => {
                         <ArrowLeft className="size-4" />
                         Back to Upcoming Events
                     </Link>
-                    <div className="flex items-center gap-2">
-                        <EditEvents event={event} onUpdated={setEvent} />
-                        <DeleteEvents eventId={event.id} />
-                    </div>
+                    {event.organizerEmail === session?.user?.email && (
+                        <div className="flex items-center gap-2">
+                            <EditEvents event={event} onUpdated={setEvent} />
+                            <DeleteEvents eventId={event.id} />
+                        </div>
+                    )}
                 </div>
 
                 {/* Main Event Card */}

@@ -30,7 +30,16 @@ export const auth = betterAuth({
 		},
 	},
 
-    plugins: [jwt()],
+    plugins: [
+        jwt({
+            jwt: {
+                definePayload: ({ user }) => ({
+                    id: user.id,
+                    email: user.email,
+                }),
+            },
+        }),
+    ],
     session: {
         cookieCache: {
             enabled: true,

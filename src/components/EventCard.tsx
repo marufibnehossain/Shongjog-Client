@@ -45,7 +45,6 @@ const EventCard = ({
   date,
   organizerEmail,
   showCancel=false,
-  showEdit=false,
 }: IEvent) => {
   const [isCancelling, setIsCancelling] = useState(false);
   const { data: session } = useSession();

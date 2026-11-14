@@ -9,18 +9,10 @@ import {
     HeartHandshake,
     Leaf,
 } from "lucide-react";
-import { headers } from "next/headers";
 import Link from "next/link";
 
 const AllEventsPage = async () => {
-    const jwtToken = await auth.api.getToken({
-        headers: await headers()
-    });
-    const res = await fetch("http://localhost:5000/events", {
-        headers: {
-            authorization: `Bearer ${jwtToken?.token}`,
-        },
-    });
+    const res = await fetch("http://localhost:5000/events");
     const data: IEvent[] = await res.json();
 
     const categories = [
