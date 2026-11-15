@@ -83,7 +83,7 @@ const EventCard = ({
       {/* Category Colored Content */}
       <div
         className="overflow-hidden rounded-[22px]"
-        style={{ backgroundColor: categoryBackground }}
+        style={{backgroundImage: "url('/pattern-bg.png')", backgroundPosition: "center center", backgroundRepeat: "repeat", backgroundColor: "var(--hero-bg)"}}
       >
         {/* Image */}
         <div className="relative overflow-hidden p-2">

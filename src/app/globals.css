@@ -19,6 +19,7 @@
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-stroke: var(--stroke);
+  --color-herobg: var(--hero-bg);
 
   --color-success: var(--success);
   --color-danger: var(--danger);
@@ -44,9 +45,10 @@
   --success: #3F8F5F;
   --danger: #C94C4C;
   --warning: #E39A45;
+
+  --hero-bg: #edf5e7;
 }
 
-/* Dark Theme */
 .dark {
   --primary: #4F9A72;
   --primary-hover: #65AD86;
@@ -62,6 +64,8 @@
   --success: #55B978;
   --danger: #E45D5F;
   --warning: #F0AD55;
+
+  --hero-bg: #17241c;
 }
 
 body {

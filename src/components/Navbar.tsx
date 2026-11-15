@@ -14,7 +14,7 @@ const Navbar = () => {
                         </div>
                         <Link href='/events' className='sm:text-sm text-xs font-medium hover:no-underline max-sm:hidden'>Upcoming Events</Link>
                         <Link href='/events' className='sm:text-sm text-xs font-medium hover:no-underline sm:hidden'>Events</Link>
-                        <DropdownMenuAvatar />
+                        <div className="w-37.5 text-end"><DropdownMenuAvatar /></div>
                     </div>
                 </div>
             </nav>
