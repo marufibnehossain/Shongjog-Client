@@ -50,6 +50,13 @@ function getLocalDateString(date: Date) {
   return `${year}-${month}-${day}`;
 }
 
+function getTomorrowDateString() {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    return getLocalDateString(tomorrow);
+}
+
 const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedEvent: IEvent) => void }) => {
   const [form, setForm] = useState({
     title: event.title,
@@ -76,9 +83,9 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
   };
 
   const handleSubmit = async () => {
-    if (form.date < getLocalDateString(new Date())) {
+    if (form.date <= getLocalDateString(new Date())) {
       setSubmitMessage(
-        "Choose today or a future date before publishing."
+        "Choose a future date before publishing."
       );
       return;
     }
@@ -240,6 +247,7 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
                   name="date"
                   type="date"
                   value={form.date}
+                  min={getTomorrowDateString()}
                   onChange={handleChange}
                   className="pl-10"
                   required

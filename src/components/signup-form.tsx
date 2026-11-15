@@ -18,6 +18,7 @@ import {
 import { Input } from "@/components/ui/input"
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client"
+import { toast } from "react-toastify"
 
 export function SignupForm({ className, ...props}: React.ComponentProps<"div">) {
   const handleSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
@@ -25,8 +26,26 @@ export function SignupForm({ className, ...props}: React.ComponentProps<"div">) 
     const formData = new FormData(e.currentTarget as HTMLFormElement);
     const user = Object.fromEntries(formData.entries()) as {name: string, email: string, password: string, image: string, "confirm-password": string};
 
-    if (user.password !== user["confirm-password"]) {
-      console.error("Passwords do not match.");
+    const password = user.password;
+    const confirmPassword = user["confirm-password"];
+
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters long.");
+      return;
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      toast.error("Password must contain at least one uppercase letter.");
+      return;
+    }
+
+    if (!/[a-z]/.test(password)) {
+      toast.error("Password must contain at least one lowercase letter.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match.");
       return;
     }
 
@@ -38,9 +57,9 @@ export function SignupForm({ className, ...props}: React.ComponentProps<"div">) 
       image: user.image
     });
     if(data) {
-      console.log("User created successfully:", data);
+      toast.success("User created successfully:");
     } else {
-      console.error("Error creating user:", error);
+      toast.error(error.message || "Failed to create account.");
     }
   };
   return (

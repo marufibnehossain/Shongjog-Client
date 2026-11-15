@@ -12,7 +12,6 @@ import {
 import {
   Field,
   FieldDescription,
-  FieldError,
   FieldGroup,
   FieldLabel,
   FieldSeparator,
@@ -31,22 +30,30 @@ export function LoginForm({
   const handleSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
       e.preventDefault();
       const formData = new FormData(e.currentTarget as HTMLFormElement);
-      const user = Object.fromEntries(formData.entries());  
+      const user = Object.fromEntries(formData.entries());
+
+      const email = user.email as string;
+      const password = user.password as string;
+
+      if (!email || !password) {
+        toast.error("Please enter your email and password.");
+        return;
+      }
   
       const {data, error} = await authClient.signIn.email({
-        email: user.email as string,
-        password: user.password as string,
+        email,
+        password,
         rememberMe: true,
         callbackURL: "/"
       });
 
-      console.log("Sign in response:", data);
-console.log("Sign in error:", error);
-
-      if(data) {
-        toast.success("User signed in successfully.");
-      } else {
+      if (error) {
         toast.error(error.message || "Error signing in user.");
+        return;
+      }
+
+      if (data) {
+          toast.success("User signed in successfully.");
       }
     };
 
@@ -79,7 +86,7 @@ console.log("Sign in error:", error);
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Welcome back</CardTitle>
           <CardDescription>
-            Login with your Apple or Google account
+            Login with your Google or GitHub account
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -99,7 +106,10 @@ console.log("Sign in error:", error);
                 Or continue with
               </FieldSeparator>
               <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <div className="flex items-center gap-0.5">
+                  <FieldLabel htmlFor="email">Email</FieldLabel>
+                  <span className="text-danger">*</span>
+                </div>
                 <Input
                   id="email"
                   type="email"
@@ -109,17 +119,11 @@ console.log("Sign in error:", error);
                 />
               </Field>
               <Field>
-                <div className="flex items-center">
+                <div className="flex items-center gap-0.5">
                   <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <FieldError>Required</FieldError>
+                  <span className="text-danger">*</span>
                 </div>
-                <Input id="password" type="password" name="password" required />
-                <a
-                    href="#"
-                    className="ml-auto text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </a>
+                <Input id="password" type="password" name="password" placeholder="******" required />
               </Field>
               <Field>
                 <Button type="submit">Login</Button>

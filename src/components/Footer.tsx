@@ -76,7 +76,7 @@ const Footer = () => {
 
                 <li>
                   <Link
-                    href="/create-event"
+                    href="/events/create"
                     className="transition hover:text-primary"
                   >
                     Create Event
@@ -85,7 +85,7 @@ const Footer = () => {
 
                 <li>
                   <Link
-                    href="/manage-events"
+                    href="/events/manage"
                     className="transition hover:text-primary"
                   >
                     Manage Events
@@ -94,7 +94,7 @@ const Footer = () => {
 
                 <li>
                   <Link
-                    href="/joined-events"
+                    href="/events/joined"
                     className="transition hover:text-primary"
                   >
                     Joined Events

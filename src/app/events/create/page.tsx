@@ -45,6 +45,13 @@ function getLocalDateString(date: Date) {
   return `${year}-${month}-${day}`;
 }
 
+function getTomorrowDateString() {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    return getLocalDateString(tomorrow);
+}
+
 export default function AddEventPage() {
   const { data: session } = authClient.useSession();
   const [form, setForm] = useState({
@@ -57,10 +64,12 @@ export default function AddEventPage() {
 });
   const [submitMessage, setSubmitMessage] = useState("");
 
-  const handleSubmit = async () => {
-    if (form.date < getLocalDateString(new Date())) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (form.date <= getLocalDateString(new Date())) {
         setSubmitMessage(
-            "Choose today or a future date before publishing."
+            "Choose a future date before publishing."
         );
         return;
     }
@@ -222,12 +231,13 @@ const handleChange = (
                     name="date"
                     type="date"
                     className="pl-10"
+                    min={getTomorrowDateString()}
                     required
                     onChange={handleChange}
                   />
                 </div>
                 <p className="text-xs text-muted">
-                  Dates must be in the future (today or later).
+                  Dates must be in the future.
                 </p>
               </div>
             </div>

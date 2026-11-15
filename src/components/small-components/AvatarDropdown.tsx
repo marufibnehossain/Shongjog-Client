@@ -51,7 +51,7 @@ export function DropdownMenuAvatar() {
 
     if (!session?.user) {
         return (
-            <div className="flex items-center sm:gap-5 gap-2">
+            <div className="flex items-center justify-end sm:gap-5 gap-2">
                 <Link href="/sign-in" className='max-sm:text-xs'>Sign in</Link>
                 {/* <Link href="/sign-up" className='btn-global max-sm:p-2! max-sm:text-xs!'>Sign up</Link> */}
             </div>
