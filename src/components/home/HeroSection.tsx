@@ -4,8 +4,7 @@ import HeroCards from "./HeroCards";
 
 const HeroSection = () => {
   return (
-    <section
-      style={{backgroundImage: "url('/pattern-bg.png')", backgroundPosition: "center center", backgroundRepeat: "repeat", backgroundColor: "var(--hero-bg)"}} className="relative overflow-hidden px-[5vw] pb-16 pt-32 sm:pb-20 sm:pt-36 lg:pb-24 lg:pt-40">
+    <section className="bg-herobg footer-pattern relative overflow-hidden px-[5vw] pb-16 pt-32 sm:pb-20 sm:pt-36 lg:pb-24 lg:pt-40">
       {/* Decorative shapes */}
       <div className="absolute -left-24 top-32 size-72 rounded-full bg-primary/5 blur-3xl" />
       <div className="absolute -right-24 top-20 size-80 rounded-full bg-primary/10 blur-3xl" />

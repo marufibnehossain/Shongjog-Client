@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 
 const NewsletterSection = () => {
   return (
-    <section className="bg-white px-[5vw] py-16">
+    <section className="bg-white dark:bg-background px-[5vw] py-16">
       <div className="mx-auto max-w-7xl">
         <div
           className="overflow-hidden rounded-[30px] px-6 py-10 sm:px-10 lg:px-14"

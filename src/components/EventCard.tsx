@@ -82,9 +82,7 @@ const EventCard = ({
     <article className="group overflow-hidden rounded-[28px] border border-stroke bg-surface p-2.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       {/* Category Colored Content */}
       <div
-        className="overflow-hidden rounded-[22px]"
-        style={{backgroundImage: "url('/pattern-bg.png')", backgroundPosition: "center center", backgroundRepeat: "repeat", backgroundColor: "var(--hero-bg)"}}
-      >
+        className="bg-herobg footer-pattern overflow-hidden rounded-[22px]">
         {/* Image */}
         <div className="relative overflow-hidden p-2">
           <div className="relative aspect-[16/10] overflow-hidden rounded-[17px]">
@@ -106,7 +104,7 @@ const EventCard = ({
             </span>
 
             {/* Date */}
-            <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-heading/90 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md">
+            <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-heading/90 dark:bg-herobg px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md">
               <CalendarDays className="size-3.5" />
               {date}
             </div>

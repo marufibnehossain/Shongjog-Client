@@ -22,11 +22,11 @@ const HeroCards = () => {
           {/* Top content */}
           <div className="relative z-10 flex items-start justify-between px-5 pt-5">
             <div>
-              <div className="text-3xl font-bold leading-none text-heading">
+              <div className="text-3xl font-bold leading-none text-[#18231D]">
                 +38%
               </div>
 
-              <p className="mt-1 text-sm font-medium text-heading">
+              <p className="mt-1 text-sm font-medium text-[#18231D]">
                 Event participation
               </p>
             </div>
@@ -47,7 +47,7 @@ const HeroCards = () => {
                   className="flex h-full flex-1 items-end gap-1"
                 >
                   <div
-                    className="w-1/2 rounded-t-full bg-heading"
+                    className="w-1/2 rounded-t-full bg-[#18231D]"
                     style={{ height: `${height}%` }}
                   />
 
@@ -65,7 +65,7 @@ const HeroCards = () => {
 
         {/* Bottom action */}
         <div className="flex items-center justify-between px-2 py-3">
-          <span className="text-sm text-heading">
+          <span className="text-sm text-[#18231D]">
             Discover events
           </span>
 
@@ -93,7 +93,7 @@ const HeroCards = () => {
             <div className="flex items-center gap-2">
               <HeartHandshake className="size-5 text-primary" />
 
-              <h3 className="text-2xl font-bold text-heading">
+              <h3 className="text-2xl font-bold text-[#18231D]">
                 Community Engagement
               </h3>
             </div>
@@ -101,31 +101,31 @@ const HeroCards = () => {
             {/* Statistics */}
             <div className="mt-9 grid grid-cols-3 gap-4">
               <div>
-                <p className="text-xs text-text">
+                <p className="text-xs text-text dark:text-[#4A554F]">
                   Participants
                 </p>
 
-                <p className="mt-1 text-xl font-bold text-heading">
+                <p className="mt-1 text-xl font-bold text-[#18231D]">
                   2,648
                 </p>
               </div>
 
               <div>
-                <p className="text-xs text-text">
+                <p className="text-xs text-[#4A554F]">
                   Events
                 </p>
 
-                <p className="mt-1 text-xl font-bold text-heading">
+                <p className="mt-1 text-xl font-bold text-[#18231D]">
                   147
                 </p>
               </div>
 
               <div>
-                <p className="text-xs text-text">
+                <p className="text-xs text-[#4A554F]">
                   Joined
                 </p>
 
-                <p className="mt-1 text-xl font-bold text-heading">
+                <p className="mt-1 text-xl font-bold text-[#18231D]">
                   93%
                 </p>
               </div>
@@ -179,12 +179,12 @@ const HeroCards = () => {
               <div className="flex items-center gap-2">
                 <UsersRound className="size-5 text-primary" />
 
-                <h3 className="text-2xl font-bold text-heading">
+                <h3 className="text-2xl font-bold text-[#18231D]">
                   Community Together
                 </h3>
               </div>
 
-              <p className="mt-4 max-w-[240px] text-sm leading-6 text-text">
+              <p className="mt-4 max-w-60 text-sm leading-6 text-[#4A554F]">
                 Bring people together through meaningful events that turn
                 shared ideas into real community impact.
               </p>

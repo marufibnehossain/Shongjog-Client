@@ -27,7 +27,7 @@ const JoinedEventsPage = async () => {
 
     return (
         <main className="w-full overflow-hidden">
-            <section style={{backgroundImage: "url('/pattern-bg.png')", backgroundPosition: "center center", backgroundRepeat: "repeat", backgroundColor: "var(--hero-bg)"}} className="px-[5vw] pb-14 pt-32 sm:pb-20 sm:pt-34 lg:pb-24 lg:pt-36">
+            <section className="bg-herobg footer-pattern px-[5vw] pb-14 pt-32 sm:pb-20 sm:pt-34 lg:pb-24 lg:pt-36">
                 <div className="mx-auto max-w-7xl">
                     <div className="grid items-end gap-8">
                         <div className="text-center max-w-xl mx-auto">
@@ -119,7 +119,7 @@ const JoinedEventsPage = async () => {
             {/* Bottom CTA */}
             <section className="bg-surface px-[5vw] pb-16 sm:pb-20">
                 <div className="mx-auto max-w-7xl">
-                    <div className="relative overflow-hidden rounded-4xl bg-heading px-6 py-12 text-white sm:px-10 lg:px-14 lg:py-14">
+                    <div className="relative overflow-hidden rounded-4xl bg-heading dark:bg-herobg px-6 py-12 text-white sm:px-10 lg:px-14 lg:py-14">
                         <div className="absolute -right-20 -top-20 size-64 rounded-full bg-primary/30 blur-3xl" />
 
                         <div className="absolute -bottom-24 left-1/3 size-56 rounded-full bg-primary/20 blur-3xl" />

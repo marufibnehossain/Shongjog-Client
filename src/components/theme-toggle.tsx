@@ -20,7 +20,7 @@ export function ThemeToggle() {
       size="icon"
       onClick={toggleTheme}
       aria-label="Toggle theme"
-      className="bg-herobg"
+      className="bg-herobg border border-dashed border-stroke"
     >
       <BsFillMoonFill className="size-5 dark:hidden" />
       <TbSunHighFilled className="hidden size-5 dark:block" />

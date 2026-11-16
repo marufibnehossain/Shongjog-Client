@@ -8,11 +8,11 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer style={{backgroundImage: "url('/pattern-bg.png')", backgroundPosition: "center center", backgroundRepeat: "repeat"}} className="bg-herobg px-[5vw] pb-6 pt-10 sm:pt-14">
+    <footer className="bg-herobg footer-pattern px-[5vw] pb-6 pt-10 sm:pt-14">
       <div className="mx-auto max-w-7xl">
 
         {/* Main Footer */}
-        <div className="rounded-[30px] bg-heading px-6 py-10 text-white sm:px-10 lg:px-14 lg:py-12">
+        <div className="rounded-[30px] bg-heading dark:bg-surface px-6 py-10 text-white sm:px-10 lg:px-14 lg:py-12">
 
           <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
 
@@ -22,7 +22,7 @@ const Footer = () => {
                 href="/"
                 className="inline-flex items-center gap-2 text-xl font-bold"
               >
-                <Image className='max-sm:w-16' src='/logo.png' alt='Logo' width={150} height={36} />
+                <Image className='max-sm:w-16' src='/logo-light.png' alt='Logo' width={150} height={36} />
               </Link>
 
               <p className="mt-5 max-w-sm text-sm leading-6 text-white/60">

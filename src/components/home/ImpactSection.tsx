@@ -3,9 +3,9 @@ import Link from "next/link";
 
 const ImpactSection = () => {
   return (
-    <section className="bg-background px-[5vw] py-16 sm:py-20">
+    <section className="bg-herobg dark:bg-background px-[5vw] py-16 sm:py-20">
       <div className="mx-auto max-w-7xl">
-        <div className="overflow-hidden rounded-[32px] bg-heading px-6 py-10 text-white sm:px-10 lg:px-14 lg:py-14">
+        <div className="overflow-hidden rounded-[32px] bg-heading dark:bg-surface px-6 py-10 text-white sm:px-10 lg:px-14 lg:py-14">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/80">
