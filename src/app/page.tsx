@@ -7,7 +7,7 @@ import NewsletterSection from "@/components/home/NewsletterSection";
 
 const HomePage = async () => {
   const res = await fetch(
-    "http://localhost:5000/events",
+    "http://localhost:5000/events/upcoming?limit=6",
     {
       cache: "no-store",
     }

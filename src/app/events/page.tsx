@@ -1,5 +1,4 @@
 import EventCard from "@/components/EventCard";
-import { auth } from "@/lib/auth";
 import { IEvent } from "@/types/event.type";
 import {
     ArrowUpRight,
@@ -12,7 +11,7 @@ import {
 import Link from "next/link";
 
 const AllEventsPage = async () => {
-    const res = await fetch("http://localhost:5000/events");
+    const res = await fetch("http://localhost:5000/events/upcoming");
     const data: IEvent[] = await res.json();
 
     const categories = [

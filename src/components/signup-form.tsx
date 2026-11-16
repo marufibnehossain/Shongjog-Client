@@ -57,7 +57,7 @@ export function SignupForm({ className, ...props}: React.ComponentProps<"div">) 
       image: user.image
     });
     if(data) {
-      toast.success("User created successfully:");
+      toast.success("User created successfully.");
     } else {
       toast.error(error.message || "Failed to create account.");
     }
@@ -102,7 +102,7 @@ export function SignupForm({ className, ...props}: React.ComponentProps<"div">) 
                   </Field>
                 </Field>
                 <FieldDescription>
-                  Must be at least 8 characters long.
+                  Must be at least 6 characters long.
                 </FieldDescription>
               </Field>
               <Field>

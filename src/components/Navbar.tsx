@@ -16,8 +16,8 @@ const Navbar = () => {
                                 <Image className='max-sm:w-16 hidden dark:block' src='/logo-light.png' alt='Logo' width={150} height={36} />
                             </Link>
                         </div>
-                        <Link href='/events' className='sm:text-sm text-xs font-medium hover:no-underline max-sm:hidden'>Upcoming Events</Link>
-                        <Link href='/events' className='sm:text-sm text-xs font-medium hover:no-underline sm:hidden'>Events</Link>
+                        <Link href='/events' className='sm:text-sm text-xs font-medium hover:no-underline'>Upcoming Events</Link>
+                        {/* <Link href='/events' className='sm:text-sm text-xs font-medium hover:no-underline sm:hidden'>Events</Link> */}
                         <div className="w-37.5 flex items-center justify-end gap-2">
                             <ThemeToggle />
                             <DropdownMenuAvatar />
