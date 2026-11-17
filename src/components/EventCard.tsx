@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { IEvent } from "@/types/event.type";
 import { useState } from "react";
-import { authClient, useSession } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
@@ -47,7 +47,6 @@ const EventCard = ({
   showCancel=false,
 }: IEvent) => {
   const [isCancelling, setIsCancelling] = useState(false);
-  const { data: session } = useSession();
   const router = useRouter();
   const categoryClass =
     "bg-white/80 text-primary font-bold";
