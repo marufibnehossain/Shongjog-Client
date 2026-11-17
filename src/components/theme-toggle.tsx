@@ -1,6 +1,5 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
 import { TbSunHighFilled } from "react-icons/tb";
 import { BsFillMoonFill } from "react-icons/bs";
 import { useTheme } from "next-themes";
