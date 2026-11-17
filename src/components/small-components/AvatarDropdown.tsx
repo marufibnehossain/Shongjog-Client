@@ -5,6 +5,7 @@ import {
   CalendarCheck,
   SquarePen,
   LogOutIcon,
+  User,
 } from "lucide-react"
 
 import {
@@ -73,8 +74,8 @@ export function DropdownMenuAvatar() {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem className="cursor-pointer sm:hidden">
-            <Link href='/events' className='sm:text-sm text-xs font-medium hover:no-underline flex gap-2 items-center'><SquareKanbanPlus /> Upcoming Events</Link>
+          <DropdownMenuItem className="cursor-pointer">
+            <Link href='/profile' className='sm:text-sm text-xs font-medium hover:no-underline flex gap-2 items-center'><User /> My Profile</Link>
           </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer">
             <Link href='/events/create' className='sm:text-sm text-xs font-medium hover:no-underline flex gap-2 items-center'><SquareKanbanPlus /> Create Event</Link> 

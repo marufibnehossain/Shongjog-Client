@@ -22,7 +22,7 @@ const Footer = () => {
                 href="/"
                 className="inline-flex items-center gap-2 text-xl font-bold"
               >
-                <Image className='max-sm:w-16' src='/logo-light.png' alt='Logo' width={150} height={36} />
+                <Image className='max-sm:w-16' src='/Logo-light.png' alt='Logo' width={150} height={36} />
               </Link>
 
               <p className="mt-5 max-w-sm text-sm leading-6 text-white/60">
@@ -160,7 +160,7 @@ const Footer = () => {
               </p>
 
               <Link
-                href="/create-event"
+                href="/events/create"
                 className="mt-5 inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-hover"
               >
                 Create an Event

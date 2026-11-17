@@ -17,8 +17,9 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import Link from "next/link";
-import { authClient } from "@/lib/auth-client"
-import { toast } from "react-toastify"
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
+import { redirect } from "next/navigation"
 
 export function SignupForm({ className, ...props}: React.ComponentProps<"div">) {
   const handleSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
@@ -58,6 +59,7 @@ export function SignupForm({ className, ...props}: React.ComponentProps<"div">) 
     });
     if(data) {
       toast.success("User created successfully.");
+      redirect("/sign-in");
     } else {
       toast.error(error.message || "Failed to create account.");
     }
@@ -110,7 +112,7 @@ export function SignupForm({ className, ...props}: React.ComponentProps<"div">) 
                 <Input id="image" type="url" placeholder="image url" name="image" required />
               </Field>
               <Field>
-                <Button type="submit">Create Account</Button>
+                <Button className='cursor-pointer' type="submit">Create Account</Button>
                 <FieldDescription className="text-center">
                   Already have an account? <Link href="/sign-in">Sign in</Link>
                 </FieldDescription>

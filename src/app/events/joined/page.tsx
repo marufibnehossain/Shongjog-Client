@@ -17,7 +17,7 @@ const JoinedEventsPage = async () => {
     const jwtToken = await auth.api.getToken({
         headers: await headers(),
     });
-    const res = await fetch(`http://localhost:5000/events/joined/${user?.email}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/joined/${user?.email}`, {
         headers: {
             Authorization: `Bearer ${jwtToken?.token}`,
         },

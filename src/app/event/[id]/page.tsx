@@ -59,7 +59,7 @@ const EventDetailsPage = () => {
         }
         
         const { data: jwtToken } = await authClient.token();
-        const res = await fetch(`http://localhost:5000/events/join`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/join`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -72,6 +72,7 @@ const EventDetailsPage = () => {
 
         if (!res.ok) {
             toast.error(result.message || "Failed to join event.");
+            return;
         }
 
         setJoined(true);
@@ -86,7 +87,7 @@ const EventDetailsPage = () => {
                 setError(false);
                 
                 const res = await fetch(
-                    `http://localhost:5000/events/${id}`);
+                    `${process.env.NEXT_PUBLIC_API_URL}/events/${id}`);
 
                 if (!res.ok) {
                     throw new Error(`Request failed: ${res.status}`);
@@ -112,9 +113,17 @@ const EventDetailsPage = () => {
         if (!id || !session?.user?.email) return;
 
         const checkJoined = async () => {
+            const { data: jwtToken } = await authClient.token();
             const res = await fetch(
-            `http://localhost:5000/events/joined/check/${id}?email=${session.user.email}`
-            );
+            `${process.env.NEXT_PUBLIC_API_URL}/events/joined/check/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${jwtToken?.token}`,
+                },
+            });
+
+            if (!res.ok) {
+                return;
+            }
 
             const data = await res.json();
 
@@ -122,7 +131,7 @@ const EventDetailsPage = () => {
         };
 
         checkJoined();
-    }, [id, session]);
+    }, [id, session?.user?.email]);
 
     if (loading) {
         return (

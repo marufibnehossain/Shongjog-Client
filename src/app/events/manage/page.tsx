@@ -12,7 +12,7 @@ const ManageEventsPage = async () => {
     const jwtToken = await auth.api.getToken({
         headers: await headers(),
     });
-    const res = await fetch('http://localhost:5000/events/manage', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/manage`, {
         headers: {
             Authorization: `Bearer ${jwtToken?.token}`,
         },

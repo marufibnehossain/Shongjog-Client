@@ -68,6 +68,7 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
   });
 
   const [submitMessage, setSubmitMessage] = useState("");
+  const [open, setOpen] = useState(false);
 
   const handleChange = (
     e: ChangeEvent<
@@ -93,7 +94,7 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
     try {
       const { data: jwtToken } = await authClient.token();
       const res = await fetch(
-        `http://localhost:5000/events/${event.id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/events/${event.id}`,
         {
           method: "PATCH",
           headers: {
@@ -118,7 +119,8 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
         ...form,
       };
       onUpdated(updatedEvent);
-
+      setOpen(false);
+      
       setSubmitMessage("Event updated successfully!");
     } catch (error) {
       console.error("Update event error:", error);
@@ -130,7 +132,7 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger className="rounded-lg border border-primary px-4 py-1.5 text-sm text-primary transition-colors hover:bg-primary/10 cursor-pointer">
         Edit
       </DialogTrigger>
@@ -255,7 +257,7 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
               </div>
 
               <p className="text-xs text-muted">
-                Dates must be today or in the future.
+                Dates must be in the future.
               </p>
             </div>
           </div>
@@ -387,7 +389,7 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
           {/* Submit */}
           <Button
             type="submit"
-            className="h-11 w-full bg-primary text-primary-foreground shadow-sm hover:bg-primary-hover"
+            className="h-11 w-full bg-primary text-primary-foreground shadow-sm hover:bg-primary-hover cursor-pointer"
           >
             <CheckCircle2 aria-hidden="true" />
             Update Event

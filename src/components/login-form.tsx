@@ -126,7 +126,7 @@ export function LoginForm({
                 <Input id="password" type="password" name="password" placeholder="******" required />
               </Field>
               <Field>
-                <Button type="submit">Login</Button>
+                <Button className={'cursor-pointer'} type="submit">Login</Button>
                 <FieldDescription className="text-center">
                   Don&apos;t have an account? <Link href="/sign-up">Sign up</Link>
                 </FieldDescription>

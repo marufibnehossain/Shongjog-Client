@@ -17,6 +17,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
+import { useRouter } from 'next/navigation';
 
 const photoPresets = [
   {
@@ -53,6 +55,7 @@ function getTomorrowDateString() {
 }
 
 export default function AddEventPage() {
+  const router = useRouter();
   const { data: session } = authClient.useSession();
   const [form, setForm] = useState({
     title: "",
@@ -77,7 +80,7 @@ export default function AddEventPage() {
     try {
         const { data: jwtToken } = await authClient.token();
         const res = await fetch(
-            "http://localhost:5000/events/create",
+            `${process.env.NEXT_PUBLIC_API_URL}/events/create`,
             {
                 method: "POST",
                 headers: {
@@ -99,14 +102,17 @@ export default function AddEventPage() {
 
         setSubmitMessage("Event created successfully!");
 
-        setForm({
-            title: "",
-            type: "Donation",
-            date: "",
-            location: "",
-            thumbnailUrl: "",
-            description: "",
-        });
+        toast.success("Event created successfully!");
+        router.push("/events");
+
+        // setForm({
+        //     title: "",
+        //     type: "Donation",
+        //     date: "",
+        //     location: "",
+        //     thumbnailUrl: "",
+        //     description: "",
+        // });
     } catch (error) {
         console.error("Create event error:", error);
         setSubmitMessage(
@@ -326,6 +332,8 @@ const handleChange = (
               <Textarea
                 id="event-description"
                 name="description"
+                value={form.description}
+                onChange={handleChange}
                 className="min-h-32"
                 placeholder="Explain the purpose of the drive, volunteers required, items being distributed or tasks to complete..."
                 required
@@ -341,7 +349,7 @@ const handleChange = (
 
             <Button
               type="submit"
-              className="h-11 w-full bg-primary text-primary-foreground shadow-sm hover:bg-primary-hover"
+              className="h-11 w-full bg-primary text-primary-foreground shadow-sm hover:bg-primary-hover cursor-pointer"
             >
               <CheckCircle2 aria-hidden="true" />
               Publish Event

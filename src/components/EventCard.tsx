@@ -52,30 +52,28 @@ const EventCard = ({
   const categoryClass =
     "bg-white/80 text-primary font-bold";
 
-  const categoryBackground =
-    "#edf5e7";
 
   const handleCancel = async () => {
+    setIsCancelling(true);
+
     const { data: jwtToken } = await authClient.token();
-    const res = await fetch(`http://localhost:5000/events/joined/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/joined/${id}`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json',
         Authorization: `Bearer ${jwtToken?.token}`,
       },
-      body: JSON.stringify({
-        email: session?.user?.email,
-      }),
     })
     const data = await res.json();
 
     setIsCancelling(false);
 
-    toast.success("Event cancelled successfully.");
-
-    if (res.ok) {
-      router.refresh();
+    if (!res.ok) {
+        toast.error(data.message || "Failed to cancel event.");
+        return;
     }
+
+    toast.success("Event cancelled successfully.");
+    router.refresh();
   }
 
   return (
@@ -143,7 +141,7 @@ const EventCard = ({
       </div>
 
       {/* Action */}
-      <div className="mt-2 flex items-center justify-between rounded-[18px] bg-background-soft px-4 py-1">
+      <div className="mt-2 flex items-center justify-between rounded-[18px] px-4 py-1">
         <Link
           href={`/event/${id}`}
           className="inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-primary-hover"

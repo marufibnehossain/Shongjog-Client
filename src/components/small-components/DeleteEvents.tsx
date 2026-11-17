@@ -13,12 +13,14 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import { authClient } from "@/lib/auth-client"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const AlertDialogDemo = ({eventId} : {eventId: string}) => {
+    const router = useRouter();
     const handleDelete = async () => {
       const { data: jwtToken } = await authClient.token();
-      const res = await fetch(`http://localhost:5000/events/${eventId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/${eventId}`, {
           method: 'DELETE',
           headers: {
               Authorization: `Bearer ${jwtToken?.token}`,
@@ -26,7 +28,14 @@ const AlertDialogDemo = ({eventId} : {eventId: string}) => {
       });
 
       const data = await res.json();
-      redirect('/events');
+
+      if (!res.ok) {
+        toast.error(data.message || "Failed to delete event.");
+        return;
+      }
+
+      toast.success("Event deleted successfully.");
+      router.push('/events');
     }
   return (
     <AlertDialog>

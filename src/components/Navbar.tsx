@@ -12,8 +12,8 @@ const Navbar = () => {
                     <div className='max-w-7xl mx-auto bg-surface flex items-center justify-between px-5 max-sm:px-3 py-4 rounded-full'>
                         <div>
                             <Link href='/' className='sm:text-xl text-lg font-bold hover:no-underline'>
-                                <Image className='max-sm:w-16 dark:hidden' src='/logo.png' alt='Logo' width={150} height={36} />
-                                <Image className='max-sm:w-16 hidden dark:block' src='/logo-light.png' alt='Logo' width={150} height={36} />
+                                <Image className='max-sm:w-16 dark:hidden' src='/Logo.png' alt='Logo' width={150} height={36} />
+                                <Image className='max-sm:w-16 hidden dark:block' src='/Logo-light.png' alt='Logo' width={150} height={36} />
                             </Link>
                         </div>
                         <Link href='/events' className='sm:text-sm text-xs font-medium hover:no-underline'>Upcoming Events</Link>

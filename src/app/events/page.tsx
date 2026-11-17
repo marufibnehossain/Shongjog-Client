@@ -11,7 +11,7 @@ import {
 import Link from "next/link";
 
 const AllEventsPage = async () => {
-    const res = await fetch("http://localhost:5000/events/upcoming");
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/upcoming`);
     const data: IEvent[] = await res.json();
 
     const categories = [
@@ -138,16 +138,6 @@ const AllEventsPage = async () => {
                                 find an opportunity that feels right for you.
                             </p>
                         </div>
-
-                        <div className="text-left md:text-right">
-                            <p className="text-3xl font-bold text-heading">
-                                {data.length}
-                            </p>
-
-                            <p className="text-sm text-muted">
-                                upcoming opportunities
-                            </p>
-                        </div>
                     </div>
 
                     {data.length > 0 ? (
@@ -175,7 +165,7 @@ const AllEventsPage = async () => {
                             </p>
 
                             <Link
-                                href="/create-event"
+                                href="/events/create"
                                 className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
                             >
                                 Create an Event
@@ -213,7 +203,7 @@ const AllEventsPage = async () => {
                             </div>
 
                             <Link
-                                href="/create-event"
+                                href="/events/create"
                                 className="relative inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
                             >
                                 Create an Event

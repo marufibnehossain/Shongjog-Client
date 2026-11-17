@@ -22,8 +22,8 @@ export function ThemeToggle() {
       aria-label="Toggle theme"
       className="bg-herobg border border-dashed border-stroke"
     >
-      <BsFillMoonFill className="size-5 dark:hidden" />
-      <TbSunHighFilled className="hidden size-5 dark:block" />
+      <BsFillMoonFill className="size-4 dark:hidden" />
+      <TbSunHighFilled className="hidden size-4 dark:block" />
     </Button>
   );
 }
