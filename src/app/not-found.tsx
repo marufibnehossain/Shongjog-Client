@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, SearchX } from "lucide-react";
+import { SearchX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
@@ -28,7 +28,6 @@ export default function NotFound() {
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                     <Button>
                         <Link href="/">
-                            <ArrowLeft className="size-4" />
                             Back to Home
                         </Link>
                     </Button>
