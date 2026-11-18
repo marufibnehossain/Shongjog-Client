@@ -11,7 +11,9 @@ import {
 import Link from "next/link";
 
 const AllEventsPage = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/upcoming`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/upcoming`, {
+        cache: "no-store",
+    });
     const data: IEvent[] = await res.json();
 
     const categories = [
