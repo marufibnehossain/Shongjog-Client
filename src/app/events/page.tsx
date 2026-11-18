@@ -1,5 +1,4 @@
-import EventCard from "@/components/EventCard";
-import { IEvent } from "@/types/event.type";
+import UpcomingEventsList from "@/components/UpcomingEventsList";
 import {
     ArrowUpRight,
     CalendarDays,
@@ -10,14 +9,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-export const dynamic = "force-dynamic";
-
 const AllEventsPage = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/upcoming`, {
-        cache: "no-store",
-    });
-    const data: IEvent[] = await res.json();
-
     const categories = [
         {
             title: "Community Support",
@@ -142,39 +134,7 @@ const AllEventsPage = async () => {
                         </div>
                     </div>
 
-                    {data.length > 0 ? (
-                        <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                            {data.map((event: IEvent) => (
-                                <li key={event.id}>
-                                    <EventCard {...event} />
-                                </li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <div className="mt-10 rounded-[28px] border border-dashed border-stroke bg-background px-6 py-16 text-center">
-                            <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                <CalendarDays className="size-5" />
-                            </div>
-
-                            <h3 className="mt-4 text-lg font-bold text-heading">
-                                No upcoming events
-                            </h3>
-
-                            <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted">
-                                There are no upcoming community events at the
-                                moment. Check back soon or create an event of
-                                your own.
-                            </p>
-
-                            <Link
-                                href="/events/create"
-                                className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
-                            >
-                                Create an Event
-                                <ArrowUpRight className="size-4" />
-                            </Link>
-                        </div>
-                    )}
+                    <UpcomingEventsList />
                 </div>
             </section>
 
