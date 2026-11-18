@@ -4,7 +4,7 @@ Shongjog is a community-driven social development event platform that helps peop
 
 ## Live Site
 
-http://localhost:3000
+https://shongjog-one.vercel.app
 
 ## Features
 
