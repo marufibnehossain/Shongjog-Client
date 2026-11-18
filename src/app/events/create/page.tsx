@@ -104,6 +104,7 @@ export default function AddEventPage() {
 
         toast.success("Event created successfully!");
         router.push("/events");
+        router.refresh();
 
         // setForm({
         //     title: "",

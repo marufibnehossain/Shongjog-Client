@@ -184,7 +184,6 @@ const EventDetailsPage = () => {
         <main className="min-h-screen bg-background px-[5vw] pb-20 pt-28 sm:pt-32">
             <div className="mx-auto max-w-7xl">
 
-                {/* Back */}
                 <div className="mb-8 flex items-center justify-between">
                     <Link
                         href="/events"
@@ -201,10 +200,8 @@ const EventDetailsPage = () => {
                     )}
                 </div>
 
-                {/* Main Event Card */}
                 <section className="rounded-[28px] border border-stroke bg-surface p-4 shadow-sm sm:p-6 lg:p-7">
 
-                    {/* Section Heading */}
                     {/* <div className="mb-8 flex items-center justify-between">
                         <h1 className="mb-6 text-2xl font-bold text-heading sm:text-3xl">
                             About this event
@@ -214,7 +211,6 @@ const EventDetailsPage = () => {
 
                     <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
 
-                        {/* Image */}
                         <div className="relative aspect-4/3 overflow-hidden rounded-[22px]">
                             <Image
                                 src={event.thumbnailUrl}
@@ -226,10 +222,8 @@ const EventDetailsPage = () => {
                             />
                         </div>
 
-                        {/* Content */}
                         <div className="flex flex-col">
 
-                            {/* Category */}
                             <div>
                                 <span
                                     className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-semibold ${categoryClass}`}
@@ -239,26 +233,21 @@ const EventDetailsPage = () => {
                                 </span>
                             </div>
 
-                            {/* Title */}
                             <h2 className="mt-5 text-3xl font-bold leading-tight tracking-tight text-heading sm:text-4xl">
                                 {event.title}
                             </h2>
 
-                            {/* Location */}
                             <div className="mt-4 flex items-center gap-2 text-sm text-muted">
                                 <MapPin className="size-4 shrink-0 text-primary" />
                                 <span>{event.location}</span>
                             </div>
 
-                            {/* Description */}
                             <p className="mt-6 text-sm leading-7 text-text sm:text-base">
                                 {event.description}
                             </p>
 
-                            {/* Information Boxes */}
                             <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2">
 
-                                {/* Date */}
                                 <div className="flex gap-3 rounded-2xl border border-stroke bg-background p-4">
                                     <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                                         <CalendarDays className="size-5" />
@@ -275,7 +264,6 @@ const EventDetailsPage = () => {
                                     </div>
                                 </div>
 
-                                {/* Organizer */}
                                 <div className=" flex gap-3 rounded-2xl border border-stroke bg-background p-4">
                                     <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                                         <Users className="size-5" />
@@ -292,7 +280,6 @@ const EventDetailsPage = () => {
                                     </div>
                                 </div>
 
-                                {/* Contact */}
                                 {/* <div className="flex gap-3 rounded-2xl border border-stroke bg-background p-4">
                                     <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                                         <Mail className="size-5" />
@@ -306,7 +293,6 @@ const EventDetailsPage = () => {
                                 </div> */}
                             </div>
 
-                            {/* Actions */}
                             <div className="mt-7 flex items-center gap-3">
                                 {/* <input
                                     readOnly

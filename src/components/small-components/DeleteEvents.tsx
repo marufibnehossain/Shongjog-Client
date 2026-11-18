@@ -36,6 +36,7 @@ const AlertDialogDemo = ({eventId} : {eventId: string}) => {
 
       toast.success("Event deleted successfully.");
       router.push('/events');
+      router.refresh();
     }
   return (
     <AlertDialog>
