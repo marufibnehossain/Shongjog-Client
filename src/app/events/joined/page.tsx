@@ -116,7 +116,6 @@ const JoinedEventsPage = async () => {
                 </div>
             </section>
 
-            {/* Bottom CTA */}
             <section className="bg-surface px-[5vw] pb-16 sm:pb-20">
                 <div className="mx-auto max-w-7xl">
                     <div className="relative overflow-hidden rounded-4xl bg-heading dark:bg-herobg px-6 py-12 text-white sm:px-10 lg:px-14 lg:py-14">

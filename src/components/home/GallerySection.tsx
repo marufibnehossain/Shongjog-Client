@@ -44,7 +44,6 @@ const GallerySection = () => {
   return (
     <section className="bg-surface px-[5vw] pt-20 sm:pt-24">
       <div className="mx-auto max-w-7xl">
-        {/* Section heading */}
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary">
@@ -72,8 +71,7 @@ const GallerySection = () => {
           </Link>
         </div>
 
-        {/* Gallery */}
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-4 sm:auto-rows-[180px]">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-4 sm:auto-rows-45">
           {galleryItems.map((item) => (
             <div
               key={item.src}
@@ -87,10 +85,8 @@ const GallerySection = () => {
                 className="object-cover transition duration-500 group-hover:scale-105"
               />
 
-              {/* Image overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-90" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/10 to-transparent opacity-90" />
 
-              {/* Content */}
               <div className="absolute inset-x-0 bottom-0 p-5">
                 <p className="text-xs font-semibold uppercase tracking-wider text-white/65">
                   {item.category}

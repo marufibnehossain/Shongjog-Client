@@ -77,12 +77,10 @@ const EventCard = ({
 
   return (
     <article className="group overflow-hidden rounded-[28px] border border-stroke bg-surface p-2.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-      {/* Category Colored Content */}
       <div
         className="bg-herobg footer-pattern overflow-hidden rounded-[22px]">
-        {/* Image */}
         <div className="relative overflow-hidden p-2">
-          <div className="relative aspect-[16/10] overflow-hidden rounded-[17px]">
+          <div className="relative aspect-16/10 overflow-hidden rounded-[17px]">
             <Image
               src={thumbnailUrl}
               alt={title}
@@ -91,16 +89,14 @@ const EventCard = ({
               sizes="(max-width: 768px) 100vw, 33vw"
             />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
 
-            {/* Category */}
             <span
               className={`absolute left-4 top-4 rounded-full px-3 py-1.5 text-xs backdrop-blur-md ${categoryClass}`}
             >
               {type}
             </span>
 
-            {/* Date */}
             <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-heading/90 dark:bg-herobg px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md">
               <CalendarDays className="size-3.5" />
               {date}
@@ -108,7 +104,6 @@ const EventCard = ({
           </div>
         </div>
 
-        {/* Content */}
         <div className="px-5 pb-5 pt-2">
           <h3 className="line-clamp-2 text-lg font-bold leading-snug text-heading transition-colors group-hover:text-primary">
             {title}
@@ -118,7 +113,6 @@ const EventCard = ({
             {description}
           </p>
 
-          {/* Event Information */}
           <div className="mt-4 space-y-2.5 border-t border-heading/10 pt-4">
             <div className="flex items-start gap-2 text-sm text-text">
               <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
@@ -139,7 +133,6 @@ const EventCard = ({
         </div>
       </div>
 
-      {/* Action */}
       <div className="mt-2 flex items-center justify-between rounded-[18px] px-4 py-1">
         <Link
           href={`/event/${id}`}

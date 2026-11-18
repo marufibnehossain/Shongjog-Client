@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 const AllEventsPage = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/upcoming`, {
         cache: "no-store",
@@ -72,7 +74,6 @@ const AllEventsPage = async () => {
                             </p>
                         </div>
 
-                        {/* Hero CTA */}
                         <div className="rounded-[28px] border border-stroke bg-surface p-6 shadow-sm">
                             <p className="text-sm font-medium text-muted">
                                 Have an idea worth bringing to your community?
@@ -92,7 +93,6 @@ const AllEventsPage = async () => {
                         </div>
                     </div>
 
-                    {/* Category Cards */}
                     <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                         {categories.map((category) => {
                             const Icon = category.icon;
@@ -178,7 +178,6 @@ const AllEventsPage = async () => {
                 </div>
             </section>
 
-            {/* Bottom CTA */}
             <section className="bg-surface px-[5vw] pb-16 sm:pb-20">
                 <div className="mx-auto max-w-7xl">
                     <div className="relative overflow-hidden rounded-4xl bg-heading dark:bg-herobg px-6 py-12 text-white sm:px-10 lg:px-14 lg:py-14">

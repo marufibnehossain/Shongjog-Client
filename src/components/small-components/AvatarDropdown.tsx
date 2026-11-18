@@ -30,7 +30,6 @@ import Link from "next/link";
 
 export function DropdownMenuAvatar() {
     const { data: session, isPending } = useSession();
-    console.log("Session:", session?.user);
     const handleSignOut = async () => {
         const { error } = await signOut();
 
@@ -60,7 +59,7 @@ export function DropdownMenuAvatar() {
     }
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="ghost" size="icon" className="rounded-full"><Avatar>
+      <DropdownMenuTrigger render={<Button variant="ghost" size="icon" className="rounded-full max-sm:w-7 max-sm:h-7"><Avatar>
           <AvatarImage src={session?.user.image || ""} alt="profile image" />
           <AvatarFallback>LR</AvatarFallback>
         </Avatar></Button>} />

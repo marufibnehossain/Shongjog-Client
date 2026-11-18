@@ -149,7 +149,6 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
             handleSubmit();
           }}
         >
-          {/* Event Title */}
           <div className="space-y-2">
             <label
               htmlFor="event-title"
@@ -176,9 +175,7 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
             </div>
           </div>
 
-          {/* Type + Date */}
           <div className="grid gap-5 sm:grid-cols-2">
-            {/* Event Type */}
             <div className="space-y-2">
               <label
                 htmlFor="event-type"
@@ -229,7 +226,6 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
               </div>
             </div>
 
-            {/* Event Date */}
             <div className="space-y-2">
               <label
                 htmlFor="event-date"
@@ -262,7 +258,6 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
             </div>
           </div>
 
-          {/* Location */}
           <div className="space-y-2">
             <label
               htmlFor="event-location"
@@ -289,7 +284,6 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
             </div>
           </div>
 
-          {/* Thumbnail URL */}
           <div className="space-y-2">
             <label
               htmlFor="thumbnail-url"
@@ -317,7 +311,6 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
               />
             </div>
 
-            {/* Photo Presets */}
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted">
               <span>Quick photo presets:</span>
 
@@ -354,7 +347,6 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
             </div>
           </div>
 
-          {/* Description */}
           <div className="space-y-2">
             <label
               htmlFor="event-description"
@@ -375,7 +367,6 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
             />
           </div>
 
-          {/* Organizer */}
           <div className="flex flex-col gap-1 rounded-lg border border-stroke bg-background px-4 py-3 text-xs sm:flex-row sm:items-center sm:justify-between">
             <span className="text-muted">
               Organizer email attached:
@@ -386,7 +377,6 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
             </span>
           </div>
 
-          {/* Submit */}
           <Button
             type="submit"
             className="h-11 w-full bg-primary text-primary-foreground shadow-sm hover:bg-primary-hover cursor-pointer"
@@ -395,7 +385,6 @@ const EditEvents = ({ event, onUpdated }: { event:  IEvent; onUpdated: (updatedE
             Update Event
           </Button>
 
-          {/* Message */}
           {submitMessage && (
             <p
               role="status"

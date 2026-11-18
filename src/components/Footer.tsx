@@ -11,18 +11,16 @@ const Footer = () => {
     <footer className="bg-herobg footer-pattern px-[5vw] pb-6 pt-10 sm:pt-14">
       <div className="mx-auto max-w-7xl">
 
-        {/* Main Footer */}
         <div className="rounded-[30px] bg-heading dark:bg-surface px-6 py-10 text-white sm:px-10 lg:px-14 lg:py-12">
 
           <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
 
-            {/* Brand */}
             <div className="max-w-sm">
               <Link
                 href="/"
                 className="inline-flex items-center gap-2 text-xl font-bold"
               >
-                <Image className='max-sm:w-16' src='/Logo-light.png' alt='Logo' width={150} height={36} />
+                <Image className='max-sm:w-25' src='/Logo-light.png' alt='Logo' width={150} height={36} />
               </Link>
 
               <p className="mt-5 max-w-sm text-sm leading-6 text-white/60">
@@ -30,7 +28,6 @@ const Footer = () => {
                 opportunities to make a positive difference together.
               </p>
 
-              {/* Social */}
               <div className="mt-6 flex items-center gap-2">
                 <a
                   href="#"
@@ -58,7 +55,6 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Platform */}
             <div>
               <h3 className="text-sm font-semibold text-white">
                 Platform
@@ -103,7 +99,6 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Community */}
             <div>
               <h3 className="text-sm font-semibold text-white">
                 Community
@@ -148,7 +143,6 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Get involved */}
             <div>
               <h3 className="text-sm font-semibold text-white">
                 Get involved
@@ -169,7 +163,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact strip */}
           <div className="mt-10 flex flex-col gap-4 rounded-[20px] bg-white/5 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
               <div className="flex size-9 items-center justify-center rounded-full bg-primary/20 text-primary">
@@ -200,13 +193,12 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="flex flex-col gap-3 px-2 py-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>
+        <div className="flex flex-col gap-3 px-2 py-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between justify-center">
+          <p className="text-center">
             © {new Date().getFullYear()} Shongjog. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-5 max-sm:justify-center">
             <Link
               href="#"
               className="transition hover:text-primary"

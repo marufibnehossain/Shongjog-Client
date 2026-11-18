@@ -5,7 +5,6 @@ import HeroCards from "./HeroCards";
 const HeroSection = () => {
   return (
     <section className="bg-herobg footer-pattern relative overflow-hidden px-[5vw] pb-16 pt-32 sm:pb-20 sm:pt-36 lg:pb-24 lg:pt-40">
-      {/* Decorative shapes */}
       <div className="absolute -left-24 top-32 size-72 rounded-full bg-primary/5 blur-3xl" />
       <div className="absolute -right-24 top-20 size-80 rounded-full bg-primary/10 blur-3xl" />
 
@@ -45,7 +44,6 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Hero visual cards */}
         <div className="mx-auto mt-14 max-w-7xl">
           {/* <div className="rounded-[24px] border border-stroke bg-surface p-5 shadow-sm">
             <p className="text-3xl font-bold text-heading">100+</p>
